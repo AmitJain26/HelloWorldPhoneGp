@@ -1,51 +1,239 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
-
- TestAmit 123123123123123
-
-Amit Web
-
-Amit Source Tree
-
--->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+<head>
+    <title>Masquerade</title>
+    <link href="kendoui/styles/kendo.mobile.all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="font-awesome-4.0.3/css/font-awesome.min.css">
+    <link href="css/base.css" rel="stylesheet"/>
+
+    <script src="kendoui/js/jquery.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+
+    <script src="kendoui/js/kendo.mobile.min.js"></script>
+
+
+    <script src="js/jquery.color.js" type="text/javascript"></script>
+    <script src="js/cxf-utils.js" type="text/javascript"></script>
+    <script src="js/wsdl-utils.js" type="text/javascript"></script>
+    <script src="js/attr.js" type="text/javascript"></script>
+    <script src="js/util.js" type="text/javascript"></script>
+    <script src="js/files.js" type="text/javascript"></script>
+
+
+    <script src="js/ws/signonService.js" type="text/javascript"></script>
+    <script src="js/ws/getPersonService.js" type="text/javascript"></script>
+
+
+    <script src="js/index.js" type="text/javascript"></script>
+    <script src="js/registration.js" type="text/javascript"></script>
+    <script src="js/beaconManager.js" type="text/javascript"></script>
+     <script src="js/Rewards.js" type="text/javascript"></script>
+    
+
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <link href="css/default.css" rel="stylesheet"/>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places">
+    </script>
+    <!--<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css"rel="stylesheet"type="text/css" />-->
+
+    <script src="js/marker/markerwithlabel.js" type="text/javascript"></script>
+    <!-- start Mixpanel -->
+
+    <script type="text/javascript">(function (e, b) {
+        if (!b.__SV) {
+            var a, f, i, g;
+            window.mixpanel = b;
+            a = e.createElement("script");
+            a.type = "text/javascript";
+            a.async = !0;
+            a.src = 'js/mixpanel-2.2.min.js';
+            f = e.getElementsByTagName("script")[0];
+            f.parentNode.insertBefore(a, f);
+            b._i = [];
+            b.init = function (a, e, d) {
+                function f(b, h) {
+                    var a = h.split(".");
+                    2 == a.length && (b = b[a[0]], h = a[1]);
+                    b[h] = function () {
+                        b.push([h].concat(Array.prototype.slice.call(arguments, 0)))
+                    }
+                }
+
+                var c = b;
+                "undefined" !== typeof d ? c = b[d] = [] : d = "mixpanel";
+                c.people = c.people || [];
+                c.toString = function (b) {
+                    var a = "mixpanel";
+                    "mixpanel" !== d && (a += "." + d);
+                    b || (a += " (stub)");
+                    return a
+                };
+                c.people.toString = function () {
+                    return c.toString(1) + ".people (stub)"
+                };
+                i = "disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+                for (g = 0; g < i.length; g++)f(c, i[g]);
+                b._i.push([a, e, d])
+            };
+            b.__SV = 1.2
+        }
+    })(document, window.mixpanel || []);
+    mixpanel.init("55b08a798825699525ac4cd62c12df4f");</script>
+    <!-- end Mixpanel -->
+
+</head>
+<body id="body">
+
+<div id="checkinBox" class="checkin-alert">
+    <div id="message" class="message" onclick="checkined()"></div>
+    <div id="checkin-remove" class="checkin-remove" style="float: right; line-height: 53px" onclick="hideCheckInMessage()"></div>
+</div>
+
+<div data-role="layout" data-id="index-layout">
+</div>
+
+<div data-role="view" id="initialization" data-title="Mozido Finance"
+     data-before-show="initAuthenticationUI" data-layout="index-layout">
+</div>
+<script type="text/javascript">
+
+    window.devMode = false;
+    window.majorId = "797230884";
+
+    function checkined(e) {
+        showCheckInMessage('You just earned 200 points by checking in!');
+        $('#checkin-remove').css('display', 'none');
+        setTimeout(function() {
+            hideCheckInMessage();
+        }, 3000);
+    }
+
+    function initStatusBar() {
+        var os = kendo.support.mobileOS;
+        if (os.ios && os.flatVersion >= 700) {
+            window.StatusBar.styleDefault();
+        }
+    }
+
+    function receivedBeacons(beacons) {
+        if (beacons != null && window.sessionStorage.getItem("beacons") != null) {
+            var packagedBeacons = JSON.parse(window.sessionStorage.getItem("beacons"));
+            var minDistanceBeacon = null;
+            var minDistancePackageName = window.sessionStorage.getItem("activePackage");
+            var choosePackagedBeacon = null;
+
+            for (var i = 0; i < beacons.length; i++) {
+                for (var j = 0; j < packagedBeacons.length; j++) {
+                    if (beacons[i].proximityUUID.toUpperCase() == packagedBeacons[j].puuid.toUpperCase() &&
+                            beacons[i].major == packagedBeacons[j].major &&
+                            beacons[i].minor == packagedBeacons[j].minor &&
+                            beacons[i].distance < packagedBeacons[j].distance
+                            ) {
+                        if (minDistanceBeacon != null) {
+                            if (beacons[i].distance < minDistanceBeacon.distance) {
+                                minDistanceBeacon = beacons[i];
+                                minDistancePackageName = packagedBeacons[j].personId;
+                                choosePackagedBeacon = packagedBeacons[j];
+                            }
+                        } else {
+                            minDistanceBeacon = beacons[i];
+                            minDistancePackageName = packagedBeacons[j].personId;
+                            choosePackagedBeacon = packagedBeacons[j];
+                        }
+                    }
+                }
+            }
+            if (minDistanceBeacon == null) {
+                if (window.sessionStorage.getItem("activePackage") != window.majorId) {
+                    changePackage(window.majorId);
+                    window.showedMessageCheckIn = false;
+                }
+            } else {
+                if (window.sessionStorage.getItem("activePackage") != minDistancePackageName) {
+                    if (minDistanceBeacon.distance < choosePackagedBeacon.distance) {
+                        if (new Date().getMilliseconds() - window.skinTimeHelper < 2001) {
+                            changePackage(minDistancePackageName);
+                            window.showedMessageCheckIn = false;
+                        } else {
+                            window.skinTimeHelper = new Date().getMilliseconds();
+                        }
+                    }
+                } else {
+                    if (minDistanceBeacon.distance < 0.5) {
+                        if (new Date().getMilliseconds() - window.timeHelper < 2001 && window.showedMessageCheckIn == false) {
+                            $('#checkin-remove').css('display', 'block');
+                            showCheckInMessage("Check in to this location to earn 200 points");
+                            window.showedMessageCheckIn = true;
+
+                        } else {
+                            window.timeHelper = new Date().getMilliseconds();
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+
+
+//    document.addEventListener('deviceready',
+    window.addEventListener('load',
+            function () {
+                window.sessionStorage.clear();
+                $.post(window.masqueradeService,
+                                '{"jsonrpc": "2.0", "id": "199", "method": "getAllBeacons", "params": {"majorId": "797230884"}}')
+                        .done(function (data) {
+                            var beaconsPost = [];
+                            $.each(data.result, function (key, val) {
+                                var p = {};
+                                p.id = val.id;
+                                p.minor = val.minorId;
+                                p.major = val.majorId;
+                                p.puuid = val.puuid;
+                                p.distance = val.distance;
+                                p.personId = val.personId;
+                                beaconsPost.push(p);
+                            });
+                            window.sessionStorage.setItem("beacons", JSON.stringify(beaconsPost));
+                        })
+                        .always(function () {
+                        });
+
+
+                var delayBeforeInitialization = 200;
+                if (navigator.userAgent.match(/(iPod|iPhone|iPad)/) || window.developerMode != undefined) {
+                    delayBeforeInitialization = 0;
+                    iosMode = true;
+                }
+                setTimeout(function () {
+                    initStatusBar();
+                    hideCheckInMessage();
+                    var options = {skin: "flat", initial: "initialization"};
+                    window.app = new kendo.mobile.Application($(document.body), options);
+                    var os = kendo.support.mobileOS;
+                    if (os.ios && os.flatVersion >= 700) {
+                        var v = $("body").css("height");
+                        $("body").css("height", (parseInt(v.replace(/px/, "")) + 20) + "px");
+
+                    }
+
+                    if (window.devMode == true) {
+                        showCheckInMessage('Check in to this location to earn 200 points');
+                        window.app.navigate("home.html");
+                    } else {
+                        loadPackage(window.majorId, function () {
+                            var beaconManager = new BeaconManager();
+                            beaconManager.startPulling(500);
+                            window.app.navigate("home.html");
+                        });
+                    }
+                }, delayBeforeInitialization);
+            }, false);
+
+
+</script>
+</body>
 </html>
